@@ -1,0 +1,49 @@
+ <html> <head> <title> Complaint Registration Form </title> <script> function notNull() { var n = document.getElementById("name").value; if (n=="") 
+{ window.alert("Name must not be empty!"); } else 
+{ var v1= RegExp("^[a-zA-Z]+$"); if (!v1.test(n)) 
+window.alert("Invalid Name!"); 
+} } function genderDisplay(id) { var g = document.getElementById(id); 
+} function checkMobile() { var m = document.getElementById("mno").value; if (m=="") window.alert("Mobile number must not be empty!"); else { var v1= RegExp("^\\d{10}$"); if (!v1.test(m)) 
+window.alert("Invalid Mobile Number!");} 
+} function checkMail() { var m = document.getElementById("eid").value; if (m=="") window.alert("Email must not be empty!"); else { 
+var v1= RegExp("^[a-zA-Z0-9\.]+@[a-zA-Z\.]+$"); 
+if (!v1.test(m)) 
+window.alert("Invalid Email ID!"); } } function eduCheck(id) { var g = document.getElementById(id); 
+} function display() { var f=0; var n = document.getElementById("name").value; var str=""; str+="NAME : "+n+"\n"; 
+var g = document.getElementById("r1"); if (g.checked) str+="GENDER:"+g.value+"\n"; 
+var g = document.getElementById("r2"); if (g.checked) str+="GENDER:"+g.value+"\n"; 
+str+="ADDRESS : "+document.getElementById("ta").value+"\n"; 
+var m = document.getElementById("mno").value; str+="MOBILE NUMBER : "+m+"\n"; 
+var m = document.getElementById("eid").value; str+="EMAIL ID : "+m+"\n"; 
+var g = document.getElementById("c1"); if (g.checked) {f=1;str+="EDUCATION :"+g.value+"\n";} 
+var g = document.getElementById("c2"); if (g.checked) if (f==0) str+="EDUCATION :"+g.value+"\n"; else {f=2;str+=" "+g.value+"\n"}; 
+var g = document.getElementById("c3"); if (g.checked) if (f==0) 
+str+="EDUCATION :"+g.value+"\n"; else {str+=" "+g.value+"\n"}; 
+var date=document.getElementById("date").value; var mon=document.getElementById("month").value; var yr=document.getElementById("yr").value; 
+str+="DOB: "+date+"-"+mon+"-"+yr+"\n"; 
+window.alert("*********************************DETAILS********************* ************\n"+str); } function dobCheck() { var date=document.getElementById("date").value; if ((date>31 || date<1) && date!="") 
+window.alert("Invalid Date!"); else { date=document.getElementById("month").value; if ((date>12 || date<1) && date!="") 
+window.alert("Invalid Month!"); else { date=document.getElementById("date").value; var mon=document.getElementById("month").value; var yr=document.getElementById("yr").value; var v = RegExp("^\\d{4}$"); if ((!v.test(yr)) && yr!="") 
+window.alert("Invalid Year!"); else { if (date!="" && mon!="" && yr!="") { date=parseInt(date); mon=parseInt(mon); var days=[31,28,31,30,31,30,31,31,30,31,30,31]; var ind=mon-1; if (!(date<=days[ind])) 
+window.alert("Invalid DOB!"); } } }} } </script> </head> 
+<body> <h1 align="center" style="color:purple">COMPLAINT REGISTRATION FORM</h1> 
+<hr style="color:purple"> 
+<form> 
+<label style="margin-right:10">Name</label><input type="text" id="name" onBlur="notNull()"><br><br> 
+<label style="margin-right:10">Address</label><textarea id="ta" onChange="displayAddr()"></textarea><br><br> 
+<fieldset><legend>Gender</legend><label style="margin-right:10">Male</label><input type="radio" id="r1" onChange="genderDisplay(id)" name="gender" value="Male"> 
+<label style="margin:10">Female</label><input type="radio" id="r2" onChange="genderDisplay(id)" name="gender" value="Female"> 
+<label style="margin:10">Others</label><input type="radio" id="r3" onChange="genderDisplay(id)" name="gender" value="Others"><br><br></fieldset><br><br> 
+<fieldset><legend>DOB</legend><label style="margin-right:10">Date</label><input type="text" id="date" onChange="dobCheck()" required> 
+<label style="margin:10">Month</label><input type="text" id="month" onChange="dobCheck()" required> 
+<label style="margin:10">Year</label><input type="text" id="yr" onChange="dobCheck()" required><br><br></fieldset><br><br> 
+<label style="margin-right:10">Mobile number</label><input type="text" id="mno" onChange="checkMobile()" required><br><br> 
+<label style="margin-right:10">Email ID</label><input type="text" id="eid" onChange="checkMail()" required><br><br> 
+<fieldset><legend>Education</legend><label style="margin-right:10">B.E</label><input type="checkbox" value="B.E" id="c1" onChange="eduCheck(id)"> 
+<label style="margin:10">M.E</label><input type="checkbox" value="M.E" id="c2" onChange="eduCheck(id)"> 
+<label style="margin:10">B.Tech</label><input type="checkbox" value="B.Tech" id="c3" onChange="eduCheck(id)"><br><br> </fieldset><br><br> 
+<label style="margin-right:10">Upload Document</label><input type="file"><br><br> 
+<input type="submit" onClick="display()"><br><br> 
+</form> 
+</body> 
+</html> 
